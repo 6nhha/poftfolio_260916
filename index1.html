@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Porfolio page</title>
+     <style>
+         .c1{height:15rem;text-align:center}
+         .container{width: 20rem;border:1px solid gray;padding:0.5rem;
+                    border-radius:1rem;float:left
+         }
+     </style>
+  </head>
+  <body id="mbody">
+    <h1>Code One의 포트폴리오 페이지</h1>
+    
+
+  </body>
+      <script>
+        const mbody=document.getElementById("mbody");
+        const data_sets=[
+        {contents_title:"서울 따릉이 수량 예측",
+        contents_desc:`서울 지역의 기존 따릉이 대여 수량을 파악한 후 날씨, 시간대 등의 정보가 대여수량에 미치는 영향을 분석하여
+            지역별 대여 가능 수량을 공급하고자 하는 목적의 다중회귀분석 모델이다.`,
+            containers:[//동일 콘텐츠는 아래 객체만 복사해서 사용하면 됩니다.
+                {img_src:`https://github.com/6nhha/poftfolio_260916/blob/9d774db7d6e4e13cd8d0a44acc61868f6593f2fe/images/seoul_bike/1.png?raw=true`,
+                        img_title:`1.데이터 수집 및 이해 단계`,
+                        img_content:`서울 따릉이 정보 제공 데이터를 수신하여 데이터 업무를 파악한다.`
+                },
+                {img_src:`https://github.com/6nhha/poftfolio_260916/blob/9d774db7d6e4e13cd8d0a44acc61868f6593f2fe/images/seoul_bike/1.png?raw=true`,
+                        img_title:`1.데이터 수집 및 이해 단계`,
+                        img_content:`서울 따릉이 정보 제공 데이터를 수신하여 데이터 업무를 파악한다.`
+                },
+                {img_src:`https://github.com/6nhha/poftfolio_260916/blob/9d774db7d6e4e13cd8d0a44acc61868f6593f2fe/images/seoul_bike/1.png?raw=true`,
+                        img_title:`1.데이터 수집 및 이해 단계`,
+                        img_content:`서울 따릉이 정보 제공 데이터를 수신하여 데이터 업무를 파악한다.`
+                },
+            ]
+            }
+        ]
+        let inHtml=""
+        for(const contents_obj of data_sets){
+            inHtml+=`<div class="contents">
+                        <h3>${contents_obj.contents_title}</h3>
+                        <p>${contents_obj.contents_desc}</p>`
+            for(const containers_obj of contents_obj.containers){
+                inHtml+=`<div class="container">
+                    <div class="c1">
+                        <img src="${containers_obj.img_src}" style="height:100%;width:auto"/>
+                    </div>
+                    <p class="c2">${containers_obj.img_title}</p>
+                    <p class="c3">${containers_obj.img_content}</p>
+                </div>`
+            }
+            inHtml+=`</div><div id="dispimg" style="display:none;background:white;border-radius:1rem;z-index:2;text-align:center;
+            position:absolute;top:4rem;left:4rem;
+            width:calc(99% - 8rem);height:calc(99% - 8rem)"></div>
+            <div id="discover" style="display:none;z-index:1;background:rgba(240,180,0,0.3);width:100%;height:100%;
+            position:absolute;left:0;top:0"></div>`
+        }
+        mbody.innerHTML+=inHtml;
+        const images=document.querySelectorAll(".c1 img")
+        const dispimg=document.getElementById("dispimg")
+        const discover=document.getElementById("discover");
+        for (const imgtag of images){
+            imgtag.addEventListener("click",resizeimg)
+        }
+        discover.addEventListener("click",()=>{
+            dispimg.style.display="none"
+            discover.style.display="none"
+        })
+        function resizeimg(){
+            //this 클릭된 이미지 객체
+            console.log(this.src)
+            dispimg.innerHTML=`<img src="${this.src}" style="width:100%;height:100%">`
+            dispimg.style.display="block"
+            discover.style.display="block"
+        }
+
+    </script>
+</html>
